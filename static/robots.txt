@@ -1,1 +1,3 @@
+User-agent: *
+Allow: /
 Sitemap: http://metadata.usgin.org/sitemap.xml
