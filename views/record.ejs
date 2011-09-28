@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>USGIN Metadata</title>
+	</head>
+	<body>
+		<div itemscope itemtype="http://schema.org/CreativeWork">
+			<div id="record-container">
+				<div id="title-container">
+					<h2 itemprop="name"><%= record["dc:title"]%></h2>
+				</div>			
+				<div id="abstract-container" class="attribute-container">
+					<p id="abstract" class="attribute-text" itemprop="desription"><%= record["dct:abstract"]%></p>
+				</div>
+				<div id="date-container" class="attribute-container">
+					<p id="modified-date" class="attribute-date" itemprop="dateModified"><%= record["dct:modified"]%></p>
+				</div>			
+				<div id="keyword-container" class="attribute-container">
+					<p class="attribute-heading">Keywords:</p>
+					<ul id="keyword-list" class="attribute-list">
+						<% for(var i=0; i<record["dc:subject"].length; i++) {%>
+						   <li class="keyword" itemprop="keywords"><%= record["dc:subject"][i] %></li>
+						<% } %>
+					</ul>
+				</div>				
+				<div id="bbox-container" class="attribute-container" itemprop="geo" itemscope itemtype="http://schema.org/GeoShape">
+					<meta itemprop="box" content="<%= record["ows:WGS84BoundingBox"]["ows:LowerCorner"].split(" ")[0]%>,<%= record["ows:WGS84BoundingBox"]["ows:LowerCorner"].split(" ")[1]%> <%= record["ows:WGS84BoundingBox"]["ows:UpperCorner"].split(" ")[0]%>,<%= record["ows:WGS84BoundingBox"]["ows:LowerCorner"].split(" ")[1]%> <%= record["ows:WGS84BoundingBox"]["ows:UpperCorner"].split(" ")[0]%>,<%= record["ows:WGS84BoundingBox"]["ows:UpperCorner"].split(" ")[1]%> <%= record["ows:WGS84BoundingBox"]["ows:LowerCorner"].split(" ")[0]%>,<%= record["ows:WGS84BoundingBox"]["ows:UpperCorner"].split(" ")[1]%> <%= record["ows:WGS84BoundingBox"]["ows:LowerCorner"].split(" ")[0]%>,<%= record["ows:WGS84BoundingBox"]["ows:LowerCorner"].split(" ")[1]%>" />
+					<p class="attribute-heading">Bounding Rectangle (WGS84)</p>
+					<ul id="bbox-list" class="attribute-list">
+						<li class="bbox-corner">Lower-left: <%= record["ows:WGS84BoundingBox"]["ows:LowerCorner"]%></li>
+						<li class="bbox-corner">Upper-right: <%= record["ows:WGS84BoundingBox"]["ows:UpperCorner"]%></li>											
+					</ul>
+				</div>
+				<div id="url-container" class="attribute-container">
+					<p class="attribute-heading">URLs</p>
+					<ul id="url-list" class="attribute-list">
+						<% for(var i=0; i<record["dct:references"].length; i++) {%>
+						   <li class="url"><a href="<%= record["dct:references"][i]["$t"] %>"><%= record["dct:references"][i]["$t"] %></a></li>
+						<% } %>
+					</ul>
+				</div>			
+			</div>
+		</div>
+	</body>
+</html>
