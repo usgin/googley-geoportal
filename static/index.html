@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>USGIN Metadata Proxy Thing</title>
@@ -13,5 +14,17 @@
 			<li>See a metadata record as HTML: <a href="record/a386a4ba-e892-11e0-9e4a-0024e880c1d2">http://metadata.usgin.org/record/[metadata identifier]</a></li>
 		</ol>
 		<p>Please enjoy!</p>
+		<br />
+		<div id="cse" style="width: 100%;">Loading</div>
+		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript"> 
+		  google.load('search', '1', {language : 'en'});
+		  google.setOnLoadCallback(function() {
+		    var customSearchControl = new google.search.CustomSearchControl('006391647244242035464:0rumwhrdtl4');
+		    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+		    customSearchControl.draw('cse');
+		  }, true);
+		</script>
+		<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
 	</body>
 </html>
