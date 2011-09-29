@@ -156,14 +156,14 @@ app.get("/sitemap.xml", function(req, res) {
 			res.send("Error Connecting to Geoportal Database.");
 		} else {
 			// Query the database for relevant file identifiers.
-			client.query("SELECT fileidentifier FROM gpt_resource WHERE findable='true' AND approvalstatus='approved' and not fileidentifier = ''", function(err, result) {
+			client.query("SELECT docuuid FROM gpt_resource WHERE findable='true' AND approvalstatus='approved'", function(err, result) {
 				if (!result) {
 					// There were no results.
 					res.send("No results were returned");
 				} else {
 					// Loop through the results, add a <url> element for each to the sitemap.xml string.
 					for (var i = 0; i < result.rows.length; i++) {
-						response += "<url><loc>http://metadata.usgin.org/record/" + encodeURIComponent(result.rows[i].fileidentifier) + "</loc></url>";
+						response += "<url><loc>http://metadata.usgin.org/record/" + encodeURIComponent(result.rows[i].docuuid) + "</loc></url>";
 					}
 					// Finish the sitemap.xml string
 					response += "</urlset>";
