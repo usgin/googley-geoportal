@@ -3,7 +3,7 @@
 		<title><%= record["dc:title"]%></title>
 	</head>
 	<body>
-		<div itemscope itemtype="http://schema.org/Product">
+		<div itemscope itemtype="http://schema.org/CreativeWork">
 			<div id="record-container">
 				<div id="title-container">
 					<h2 itemprop="name"><%= record["dc:title"]%></h2>
@@ -17,9 +17,12 @@
 				<div id="keyword-container" class="attribute-container">
 					<p class="attribute-heading">Keywords:</p>
 					<ul id="keyword-list" class="attribute-list">
-						<% for(var i=0; i<record["dc:subject"].length; i++) {%>
+						<% if (typeof(record["dc:subject"]) != "object") {%>
+						   <li class="keyword itemprop="keywords"><%= record["dc:subject"] %></li>
+					   	<% } else { %>
+						<% for (var i=0; i<record["dc:subject"].length; i++) {%>
 						   <li class="keyword" itemprop="keywords"><%= record["dc:subject"][i] %></li>
-						<% } %>
+						<% }} %>
 					</ul>
 				</div>				
 				<div id="bbox-container" class="attribute-container" itemprop="geo" itemscope itemtype="http://schema.org/GeoShape">
